@@ -1,0 +1,10 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "nodejs@18.16.0": {
+      "last_modified": "2023-05-21T19:52:09Z",
+      "resolved": "github:NixOS/nixpkgs/9356eead97d8d16956b0226d78f76bd66e06cb60#nodejs",
+      "version": "18.16.0"
+    }
+  }
+}
