@@ -1,0 +1,10 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "deno@1.38.2": {
+      "last_modified": "2023-11-19T17:46:56Z",
+      "resolved": "github:NixOS/nixpkgs/0bf3f5cf6a98b5d077cdcdb00a6d4b3d92bc78b5#deno",
+      "version": "1.38.2"
+    }
+  }
+}

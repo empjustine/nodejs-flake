@@ -1,0 +1,27 @@
+{
+  inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+  outputs = {
+    self,
+    nixpkgs-stable,
+    ...
+  } @ inputs: let
+    nodejs = inputs.nixpkgs-stable.legacyPackages.x86_64-linux.nodejs_20;
+    fetchNpmTgz = p:
+      inputs.nixpkgs-stable.legacyPackages.x86_64-linux.fetchurl {
+        url = p.url;
+        hash = p.hash;
+      };
+    buildNpmTgz = p:
+      inputs.nixpkgs-stable.legacyPackages.x86_64-linux.buildEnv {
+        name = p.name;
+        paths = [];
+        postBuild = ''
+          printf '{}' >package.json
+          ${nodejs}/bin/npm install '${fetchNpmTgz p}'
+          cp -r node_modules $out/node_modules
+          mkdir -p $out/bin
+          cd $out/bin
+          find ../node_modules/.bin -type l -exec ln -s '{}' ';'
+        '';
+      };
+  in {
