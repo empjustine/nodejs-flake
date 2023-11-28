@@ -17,11 +17,11 @@
         paths = [];
         postBuild = ''
           printf '{}' >package.json
+          mkdir -p $out/lib $out/bin
           ${nodejs}/bin/npm install --ignore-scripts '${fetchNpmTgz p}'
-          cp -r node_modules $out/node_modules
-          mkdir -p $out/bin
+          cp -r node_modules $out/lib/node_modules
           cd $out/bin
-          find ../node_modules/.bin -type l -exec ln -s '{}' ';'
+          find ../lib/node_modules/.bin -type l -exec ln -s '{}' ';'
         '';
       };
   in {
