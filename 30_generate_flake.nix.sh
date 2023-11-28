@@ -12,6 +12,6 @@ def nixVersion:
 def fetchUrl:
   "https://registry.npmjs.org/\(pname)/-/\(storeFile)";
 "    packages.x86_64-linux.\(pname)_\(nixVersion) = buildNpmTgz { name = \"\(pname)_\(nixVersion)\"; url = \"\(fetchUrl)\"; hash = \"\(.hash)\"; };"
-' npm.ndjson yarn.ndjson | sort -u
+' yarn.ndjson npm.ndjson | sort --version-sort --reverse --unique
 	cat flake.nix-tail
 ) | tee flake.nix
